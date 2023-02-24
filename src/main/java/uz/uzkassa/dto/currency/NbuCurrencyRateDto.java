@@ -1,4 +1,4 @@
-package uz.uzkassa.dtos.currency;
+package uz.uzkassa.dto.currency;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;

@@ -1,4 +1,4 @@
-package uz.uzkassa.dtos.company;
+package uz.uzkassa.dto.company;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

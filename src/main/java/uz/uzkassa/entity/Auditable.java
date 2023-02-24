@@ -1,11 +1,10 @@
-package uz.uzkassa.entities;
+package uz.uzkassa.entity;
 
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import uz.uzkassa.enums.Status;
 
 import javax.persistence.*;
 

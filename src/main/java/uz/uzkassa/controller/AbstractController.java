@@ -1,4 +1,4 @@
-package uz.uzkassa.controllers;
+package uz.uzkassa.controller;
 
 /**
  * @author Dilshodbek Akhmedov, Thu 10:20 PM. 2/23/23

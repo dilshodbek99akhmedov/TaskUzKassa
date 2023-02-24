@@ -1,4 +1,4 @@
-package uz.uzkassa.dtos.auth;
+package uz.uzkassa.dto.auth;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.*;

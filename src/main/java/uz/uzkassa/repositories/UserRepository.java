@@ -1,7 +1,7 @@
 package uz.uzkassa.repositories;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import uz.uzkassa.entities.User;
+import uz.uzkassa.entity.User;
 
 import java.util.Optional;
 

@@ -1,4 +1,4 @@
-package uz.uzkassa.dtos;
+package uz.uzkassa.dto;
 
 import lombok.Getter;
 import lombok.Setter;

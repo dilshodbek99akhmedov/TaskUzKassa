@@ -1,6 +1,6 @@
 package uz.uzkassa.services;
 
-import uz.uzkassa.dtos.currency.NbuCurrencyRateDto;
+import uz.uzkassa.dto.currency.NbuCurrencyRateDto;
 
 /**
  * @author Dilshodbek Akhmedov, Fri 12:01 AM. 2/24/23

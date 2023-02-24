@@ -1,10 +1,10 @@
-package uz.uzkassa.controllers;
+package uz.uzkassa.controller;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import uz.uzkassa.dtos.auth.LoginDto;
-import uz.uzkassa.dtos.auth.RegisterDto;
+import uz.uzkassa.dto.auth.LoginDto;
+import uz.uzkassa.dto.auth.RegisterDto;
 import uz.uzkassa.services.AuthService;
 
 /**

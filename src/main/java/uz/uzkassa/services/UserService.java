@@ -1,8 +1,8 @@
 package uz.uzkassa.services;
 
-import uz.uzkassa.dtos.user.CreateUserDto;
-import uz.uzkassa.dtos.user.UpdateUserDto;
-import uz.uzkassa.dtos.user.UserDto;
+import uz.uzkassa.dto.user.CreateUserDto;
+import uz.uzkassa.dto.user.UpdateUserDto;
+import uz.uzkassa.dto.user.UserDto;
 
 /**
  * @author Dilshodbek Akhmedov, Thu 10:23 PM. 2/23/23

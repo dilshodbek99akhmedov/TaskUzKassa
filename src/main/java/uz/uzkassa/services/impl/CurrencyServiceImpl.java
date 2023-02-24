@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
-import uz.uzkassa.dtos.currency.NbuCurrencyRateDto;
+import uz.uzkassa.dto.currency.NbuCurrencyRateDto;
 import uz.uzkassa.services.CurrencyService;
 
 /**

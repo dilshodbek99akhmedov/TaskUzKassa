@@ -13,10 +13,10 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import uz.uzkassa.config.securty.JwtUtils;
 import uz.uzkassa.config.securty.UserDetailsConf;
-import uz.uzkassa.dtos.AppErrorDto;
-import uz.uzkassa.dtos.DataDto;
-import uz.uzkassa.dtos.auth.LoginDto;
-import uz.uzkassa.dtos.auth.SessionDto;
+import uz.uzkassa.dto.AppErrorDto;
+import uz.uzkassa.dto.DataDto;
+import uz.uzkassa.dto.auth.LoginDto;
+import uz.uzkassa.dto.auth.SessionDto;
 
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;

@@ -1,11 +1,11 @@
-package uz.uzkassa.controllers;
+package uz.uzkassa.controller;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import uz.uzkassa.dtos.user.CreateUserDto;
-import uz.uzkassa.dtos.user.UpdateUserDto;
-import uz.uzkassa.dtos.user.UserDto;
+import uz.uzkassa.dto.user.CreateUserDto;
+import uz.uzkassa.dto.user.UpdateUserDto;
+import uz.uzkassa.dto.user.UserDto;
 import uz.uzkassa.services.UserService;
 
 /**

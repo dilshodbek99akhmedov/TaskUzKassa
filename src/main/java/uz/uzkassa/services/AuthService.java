@@ -1,7 +1,7 @@
 package uz.uzkassa.services;
 
-import uz.uzkassa.dtos.auth.LoginDto;
-import uz.uzkassa.dtos.auth.RegisterDto;
+import uz.uzkassa.dto.auth.LoginDto;
+import uz.uzkassa.dto.auth.RegisterDto;
 
 /**
  * @author Dilshodbek Akhmedov, Thu 10:45 PM. 2/23/23

@@ -1,4 +1,4 @@
-package uz.uzkassa.dtos.company;
+package uz.uzkassa.dto.auth;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.AllArgsConstructor;
@@ -7,15 +7,16 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 /**
- * @author Dilshodbek Akhmedov, Thu 11:29 PM. 2/23/23
+ * @author Dilshodbek Akhmedov, Thu 10:42 PM. 2/23/23
  */
 
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class CreateCompanyDto {
-    private String name;
-    private String address;
-    private String zipCode;
+@JsonInclude(JsonInclude.Include.NON_NULL)
+public class LoginDto {
+    private String username;
+
+    private String password;
 }

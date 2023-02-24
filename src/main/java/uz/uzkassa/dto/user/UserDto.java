@@ -1,22 +1,27 @@
-package uz.uzkassa.dtos.auth;
+package uz.uzkassa.dto.user;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import uz.uzkassa.enums.Role;
+
+import java.time.LocalDateTime;
 
 /**
- * @author Dilshodbek Akhmedov, Thu 10:58 PM. 2/23/23
+ * @author Dilshodbek Akhmedov, Fri 12:53 AM. 2/24/23
  */
 
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@JsonInclude(JsonInclude.Include.NON_NULL)
-public class RegisterDto {
+public class UserDto {
+    private Long id;
     private String username;
     private String password;
     private String email;
+    private Role role;
+    private LocalDateTime createdAt;
+
 }

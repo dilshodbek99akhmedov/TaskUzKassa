@@ -1,4 +1,4 @@
-package uz.uzkassa.dtos;
+package uz.uzkassa.dto;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Builder;

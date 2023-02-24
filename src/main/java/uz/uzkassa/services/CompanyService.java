@@ -1,8 +1,8 @@
 package uz.uzkassa.services;
 
-import uz.uzkassa.dtos.company.CreateCompanyDto;
-import uz.uzkassa.dtos.company.CompanyDto;
-import uz.uzkassa.dtos.company.UpdateCompanyDto;
+import uz.uzkassa.dto.company.CreateCompanyDto;
+import uz.uzkassa.dto.company.CompanyDto;
+import uz.uzkassa.dto.company.UpdateCompanyDto;
 
 /**
  * @author Dilshodbek Akhmedov, Thu 10:23 PM. 2/23/23

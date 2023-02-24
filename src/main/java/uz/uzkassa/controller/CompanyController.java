@@ -1,11 +1,11 @@
-package uz.uzkassa.controllers;
+package uz.uzkassa.controller;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import uz.uzkassa.dtos.company.CompanyDto;
-import uz.uzkassa.dtos.company.CreateCompanyDto;
-import uz.uzkassa.dtos.company.UpdateCompanyDto;
+import uz.uzkassa.dto.company.CompanyDto;
+import uz.uzkassa.dto.company.CreateCompanyDto;
+import uz.uzkassa.dto.company.UpdateCompanyDto;
 import uz.uzkassa.services.CompanyService;
 
 /**

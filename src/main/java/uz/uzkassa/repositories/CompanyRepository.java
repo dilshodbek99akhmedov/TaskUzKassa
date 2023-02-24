@@ -1,7 +1,7 @@
 package uz.uzkassa.repositories;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import uz.uzkassa.entities.Company;
+import uz.uzkassa.entity.Company;
 
 /**
  * @author Dilshodbek Akhmedov, Thu 10:29 PM. 2/23/23
