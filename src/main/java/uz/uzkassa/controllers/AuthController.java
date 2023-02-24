@@ -28,11 +28,11 @@ public class AuthController extends AbstractController<AuthService> {
     }
 
     @GetMapping(value = PATH + "/auth/confirmation-email/{token}")
-    public ResponseEntity<Void> confirmation(@PathVariable String token) {
+    public ResponseEntity<String> confirmation(@PathVariable String token) {
 
-        service.confirmation(token);
+        String message = service.confirmation(token);
 
-        return new ResponseEntity<>(HttpStatus.OK);
+        return new ResponseEntity<>(message, HttpStatus.OK);
     }
 
     @PostMapping(value = PATH + "/auth/sign-in")

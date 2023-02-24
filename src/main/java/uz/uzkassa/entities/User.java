@@ -6,6 +6,7 @@ import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import uz.uzkassa.enums.Role;
+import uz.uzkassa.enums.Status;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -31,7 +32,10 @@ public class User extends Auditable {
     @Column(nullable = false)
     private String password;
 
-    @Column(nullable = false)
+    @Column(
+            unique = true,
+            nullable = false
+    )
     private String email;
 
     @Column(
@@ -40,6 +44,10 @@ public class User extends Auditable {
     )
     @Enumerated(EnumType.STRING)
     private Role role;
+
+    @Column(nullable = false)
+    @Enumerated(EnumType.STRING)
+    private Status status;
 
     @CreatedDate
     @CreationTimestamp

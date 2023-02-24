@@ -1,6 +1,7 @@
 package uz.uzkassa.entities;
 
 import lombok.*;
+import uz.uzkassa.enums.Status;
 
 import javax.persistence.*;
 import java.util.List;
@@ -29,6 +30,10 @@ public class Company extends Auditable {
             nullable = false
     )
     private String zipCode;
+
+    @Column(nullable = false)
+    @Enumerated(EnumType.STRING)
+    private Status status;
 
     @OneToMany(
             mappedBy = "company",

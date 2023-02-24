@@ -17,6 +17,22 @@ spring:
     properties:
       hibernate:
         format_sql: true
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: tester404tester@gmail.com
+    password: olxrsaxtbcgmcygd
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
 nbu:
   currency:
     url: https://nbu.uz/uz/exchange-rates/json/
+email:
+  subject: Confirmation email
+  sender: tester404tester@gmail.com
+  activation:
+    text-prefix: <a href="http://localhost:8183/api/v1/auth/confirmation-email/%s">Click</a>

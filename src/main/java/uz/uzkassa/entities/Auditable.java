@@ -25,8 +25,4 @@ public abstract class Auditable {
             strategy = GenerationType.IDENTITY
     )
     private Long id;
-
-    @Column(nullable = false)
-    @Enumerated(EnumType.STRING)
-    private Status status;
 }

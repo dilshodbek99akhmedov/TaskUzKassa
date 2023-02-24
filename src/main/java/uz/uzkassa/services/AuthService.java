@@ -23,5 +23,5 @@ public interface AuthService {
      * @param token
      * @return
      */
-    void confirmation(String token);
+    String confirmation(String token);
 }
