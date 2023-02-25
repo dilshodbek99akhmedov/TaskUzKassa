@@ -10,6 +10,8 @@ import uz.uzkassa.dto.data.DataDto;
 import uz.uzkassa.entity.Company;
 import uz.uzkassa.service.CompanyService;
 
+import javax.validation.Valid;
+
 /**
  * @author Dilshodbek Akhmedov, Thu 10:34 PM. 2/23/23
  */
@@ -22,14 +24,14 @@ public class CompanyController extends AbstractController<CompanyService> {
     }
 
     @PostMapping(PATH + "/company/create")
-    public ResponseEntity<DataDto<String>> create(@RequestBody CreateCompanyDto dto) {
+    public ResponseEntity<DataDto<String>> create(@Valid @RequestBody CreateCompanyDto dto) {
 
         Long companyId = service.create(dto);
         return new ResponseEntity<>(new DataDto<>("company_id = " + companyId), HttpStatus.OK);
     }
 
     @PostMapping(PATH + "/company/edit")
-    public ResponseEntity<DataDto<String>> edit(@RequestBody UpdateCompanyDto dto) {
+    public ResponseEntity<DataDto<String>> edit(@Valid @RequestBody UpdateCompanyDto dto) {
 
         String message = service.edit(dto);
         return new ResponseEntity<>(new DataDto<>(message), HttpStatus.OK);

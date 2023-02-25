@@ -1,5 +1,7 @@
 package uz.uzkassa.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
@@ -30,6 +32,7 @@ public class User extends Auditable {
     )
     private String username;
 
+    @JsonIgnore
     @Column(nullable = false)
     private String password;
 
@@ -67,6 +70,7 @@ public class User extends Auditable {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "company_id")
+    @JsonBackReference
     private Company company;
 
 }

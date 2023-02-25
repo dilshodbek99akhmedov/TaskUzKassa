@@ -83,12 +83,12 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public List<User> getAll(Long companyId) {
-        return userRepository.findByCompanyEmployeesAndOwner(companyId, SessionUtils.getSessionId());
+        return userRepository.getCompanyEmployees(companyId, SessionUtils.getSessionId());
     }
 
     @Override
     public User get(Long id) {
-        Optional<User> userOptional = userRepository.findByUsernameAndOwner(id, SessionUtils.getSessionId());
+        Optional<User> userOptional = userRepository.getUserById(id, SessionUtils.getSessionId());
         if (!userOptional.isPresent())
             throw new RuntimeException("User not found");
 

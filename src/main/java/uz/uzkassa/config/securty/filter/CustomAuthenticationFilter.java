@@ -99,16 +99,19 @@ public class CustomAuthenticationFilter extends UsernamePasswordAuthenticationFi
     }
 
     private DataDto<AppErrorDto> getCustomErrorMessage(HttpServletRequest request, AuthenticationException failed) {
-        if (failed.getMessage().equals(""))
-            return null;
+        String message;
+        if (failed.getMessage().equalsIgnoreCase("User is disabled"))
+            message = "You may be blocked or not activated, check your email";
         else
-            return new DataDto<>(
-                    AppErrorDto.builder()
-                            .message(failed.getMessage())
-                            .path(request.getRequestURL().toString())
-                            .status(HttpStatus.FORBIDDEN)
-                            .build()
-            );
+            message = failed.getMessage();
+
+        return new DataDto<>(
+                AppErrorDto.builder()
+                        .message(message)
+                        .path(request.getRequestURL().toString())
+                        .status(HttpStatus.FORBIDDEN)
+                        .build()
+        );
     }
 
 }

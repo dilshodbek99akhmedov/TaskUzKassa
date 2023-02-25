@@ -20,14 +20,14 @@ public interface UserRepository extends JpaRepository<User, Long> {
                     " u.company_id in (select c.id from company c where c.created_by = ?2)",
             nativeQuery = true
     )
-    Optional<User> findByUsernameAndOwner(Long id, Long ownerId);
+    Optional<User> getUserById(Long id, Long ownerId);
 
     @Query(
             value = "select * from users u where u.company_id = ?1 and" +
                     " u.company_id in (select c.id from company c where c.created_by = ?2)",
             nativeQuery = true
     )
-    List<User> findByCompanyEmployeesAndOwner(Long id, Long ownerId);
+    List<User> getCompanyEmployees(Long id, Long ownerId);
 
     Optional<User> findByUsernameOrEmail(String username, String email);
 
