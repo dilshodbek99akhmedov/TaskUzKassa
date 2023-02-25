@@ -11,12 +11,12 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import uz.uzkassa.config.securty.CustomUserDetails;
 import uz.uzkassa.config.securty.JwtUtils;
-import uz.uzkassa.config.securty.UserDetailsConf;
-import uz.uzkassa.dto.AppErrorDto;
-import uz.uzkassa.dto.DataDto;
 import uz.uzkassa.dto.auth.LoginDto;
 import uz.uzkassa.dto.auth.SessionDto;
+import uz.uzkassa.dto.data.AppErrorDto;
+import uz.uzkassa.dto.data.DataDto;
 
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
@@ -58,7 +58,7 @@ public class CustomAuthenticationFilter extends UsernamePasswordAuthenticationFi
                                             HttpServletResponse response,
                                             FilterChain chain,
                                             Authentication authentication) throws ServletException, IOException {
-        UserDetailsConf user = (UserDetailsConf) authentication.getPrincipal();
+        CustomUserDetails user = (CustomUserDetails) authentication.getPrincipal();
         Date expiryForAccessToken = JwtUtils.getExpiry();
         Date expiryForRefreshToken = JwtUtils.getExpiryForRefreshToken();
 

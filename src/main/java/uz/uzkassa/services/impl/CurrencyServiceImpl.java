@@ -7,6 +7,9 @@ import org.springframework.web.client.RestTemplate;
 import uz.uzkassa.dto.currency.NbuCurrencyRateDto;
 import uz.uzkassa.services.CurrencyService;
 
+import java.util.Arrays;
+import java.util.Objects;
+
 /**
  * @author Dilshodbek Akhmedov, Fri 12:02 AM. 2/24/23
  */
@@ -24,9 +27,12 @@ public class CurrencyServiceImpl implements CurrencyService {
 
     @Override
     public NbuCurrencyRateDto getCurrencyRate(String code) {
-        // Fetch JSON response as String wrapped in ResponseEntity
+        // Fetch JSON response as NbuCurrencyRateDto[] wrapped in ResponseEntity
         ResponseEntity<NbuCurrencyRateDto[]> response = restTemplate.getForEntity(url, NbuCurrencyRateDto[].class);
-        NbuCurrencyRateDto[] currencyResponse = response.getBody();
-        return currencyResponse[0];
+        // todo check exception
+        return Arrays.stream(Objects.requireNonNull(response.getBody()))
+                .filter(rate -> rate.getCode().equalsIgnoreCase(code))
+                .findFirst()
+                .orElseThrow(() -> new RuntimeException("Currency not found"));
     }
 }

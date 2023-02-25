@@ -29,7 +29,9 @@ import uz.uzkassa.services.impl.AuthServiceImpl;
 public class SecurityConfigurer extends WebSecurityConfigurerAdapter {
 
     public static final String[] WHITE_LIST = {
-            "/api/v1/auth/**"
+            "/api/v1/auth/**",
+            "/swagger-ui/**",
+            "/api-docs/**"
     };
 
     private final AuthServiceImpl authService;
@@ -46,10 +48,8 @@ public class SecurityConfigurer extends WebSecurityConfigurerAdapter {
         http.cors().disable();
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
         http.authorizeRequests()
-                .antMatchers(WHITE_LIST)
-                .permitAll()
+                .antMatchers(WHITE_LIST).permitAll()
                 .anyRequest().authenticated();
-
         http.addFilter(new CustomAuthenticationFilter(authenticationManagerBean()));
         http.addFilterBefore(new CustomAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class);
     }

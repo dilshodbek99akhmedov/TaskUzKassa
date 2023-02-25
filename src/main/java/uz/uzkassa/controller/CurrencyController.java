@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 import uz.uzkassa.dto.currency.NbuCurrencyRateDto;
+import uz.uzkassa.dto.data.DataDto;
 import uz.uzkassa.services.CurrencyService;
 
 /**
@@ -19,8 +20,10 @@ public class CurrencyController extends AbstractController<CurrencyService> {
     }
 
     @GetMapping(PATH + "/currency/{code}")
-    public ResponseEntity<NbuCurrencyRateDto> get(@PathVariable String code) {
+    public ResponseEntity<DataDto<NbuCurrencyRateDto>> get(@PathVariable String code) {
+
         NbuCurrencyRateDto dto = service.getCurrencyRate(code);
-        return new ResponseEntity<>(dto, HttpStatus.OK);
+        return new ResponseEntity<>(new DataDto<>(dto), HttpStatus.OK);
     }
+
 }

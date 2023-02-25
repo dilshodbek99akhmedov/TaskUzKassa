@@ -1,8 +1,8 @@
 package uz.uzkassa.services;
 
 import uz.uzkassa.dto.company.CreateCompanyDto;
-import uz.uzkassa.dto.company.CompanyDto;
 import uz.uzkassa.dto.company.UpdateCompanyDto;
+import uz.uzkassa.entity.Company;
 
 /**
  * @author Dilshodbek Akhmedov, Thu 10:23 PM. 2/23/23
@@ -17,16 +17,16 @@ public interface CompanyService {
     /**
      * @param dto
      */
-    void edit(UpdateCompanyDto dto);
+    String edit(UpdateCompanyDto dto);
 
     /**
      * @param id
      */
-    void block(Long id);
+    String block(Long id);
 
     /**
      * @param id
      * @return
      */
-    CompanyDto get(Long id);
+    Company get(Long id);
 }

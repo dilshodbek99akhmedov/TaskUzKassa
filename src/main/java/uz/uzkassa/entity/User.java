@@ -1,5 +1,6 @@
 package uz.uzkassa.entity;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -32,10 +33,7 @@ public class User extends Auditable {
     @Column(nullable = false)
     private String password;
 
-    @Column(
-            unique = true,
-            nullable = false
-    )
+    @Column(nullable = false)
     private String email;
 
     @Column(
@@ -55,11 +53,13 @@ public class User extends Auditable {
             name = "created_at",
             columnDefinition = "timestamp default now()"
     )
+    @JsonProperty("created_at")
     private LocalDateTime createdAt;
 
     @LastModifiedDate
     @UpdateTimestamp
     @Column(name = "updated_at")
+    @JsonProperty("updated_at")
     private LocalDateTime updatedAt;
 
     @ManyToOne(fetch = FetchType.LAZY)

@@ -17,7 +17,7 @@ import java.util.Set;
  */
 
 @Getter
-public class UserDetailsConf implements UserDetails {
+public class CustomUserDetails implements UserDetails {
     private Long id;
     private String username;
     private String password;
@@ -27,8 +27,7 @@ public class UserDetailsConf implements UserDetails {
 
     private Set<GrantedAuthority> authorities;
 
-    public UserDetailsConf(User user) {
-
+    public CustomUserDetails(User user) {
         this.id = user.getId();
         this.username = user.getUsername();
         this.password = user.getPassword();

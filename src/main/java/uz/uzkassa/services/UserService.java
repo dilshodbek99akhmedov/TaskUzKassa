@@ -2,7 +2,9 @@ package uz.uzkassa.services;
 
 import uz.uzkassa.dto.user.CreateUserDto;
 import uz.uzkassa.dto.user.UpdateUserDto;
-import uz.uzkassa.dto.user.UserDto;
+import uz.uzkassa.entity.User;
+
+import java.util.List;
 
 /**
  * @author Dilshodbek Akhmedov, Thu 10:23 PM. 2/23/23
@@ -17,16 +19,21 @@ public interface UserService {
     /**
      * @param dto
      */
-    void edit(UpdateUserDto dto);
+    String edit(UpdateUserDto dto);
 
     /**
      * @param id
      */
-    void block(Long id);
+    String block(Long id);
 
     /**
      * @param id
      * @return
      */
-    UserDto get(Long id);
+    User get(Long id);
+
+    /**
+     * @return
+     */
+    List<User> getAll(Long companyId);
 }

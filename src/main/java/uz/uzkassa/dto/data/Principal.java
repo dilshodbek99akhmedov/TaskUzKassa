@@ -1,8 +1,7 @@
-package uz.uzkassa.dto;
+package uz.uzkassa.dto.data;
 
 import lombok.Getter;
 import lombok.Setter;
-import uz.uzkassa.enums.Status;
 
 /**
  * @author Dilshodbek Akhmedov, Fri 2:35 PM. 2/24/23
@@ -11,13 +10,15 @@ import uz.uzkassa.enums.Status;
 @Getter
 @Setter
 public class Principal {
-    private String id;
+    private Long id;
     private String username;
-    private Status status;
+    private String[] roles;
+    private String status;
 
-    public Principal(String id, String username, String status) {
+    public Principal(Long id, String username, String[] roles, String status) {
         this.id = id;
         this.username = username;
-        this.status = Status.valueOf(status);
+        this.roles = roles;
+        this.status = status;
     }
 }

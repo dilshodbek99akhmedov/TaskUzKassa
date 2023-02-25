@@ -2,10 +2,12 @@ package uz.uzkassa.controller;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
-import uz.uzkassa.dto.company.CompanyDto;
 import uz.uzkassa.dto.company.CreateCompanyDto;
 import uz.uzkassa.dto.company.UpdateCompanyDto;
+import uz.uzkassa.dto.data.DataDto;
+import uz.uzkassa.entity.Company;
 import uz.uzkassa.services.CompanyService;
 
 /**
@@ -13,32 +15,38 @@ import uz.uzkassa.services.CompanyService;
  */
 
 @RestController
+@PreAuthorize("hasRole('OWNER')")
 public class CompanyController extends AbstractController<CompanyService> {
     public CompanyController(CompanyService service) {
         super(service);
     }
 
     @PostMapping(PATH + "/company/create")
-    public ResponseEntity<String> create(@RequestBody CreateCompanyDto dto) {
+    public ResponseEntity<DataDto<String>> create(@RequestBody CreateCompanyDto dto) {
+
         Long companyId = service.create(dto);
-        return new ResponseEntity<>("Company created company id = " + companyId, HttpStatus.OK);
+        return new ResponseEntity<>(new DataDto<>("company_id = " + companyId), HttpStatus.OK);
     }
 
     @PostMapping(PATH + "/company/edit")
-    public ResponseEntity<String> edit(@RequestBody UpdateCompanyDto dto) {
-        service.edit(dto);
-        return new ResponseEntity<>("Company updated", HttpStatus.OK);
+    public ResponseEntity<DataDto<String>> edit(@RequestBody UpdateCompanyDto dto) {
+
+        String message = service.edit(dto);
+        return new ResponseEntity<>(new DataDto<>(message), HttpStatus.OK);
     }
 
     @GetMapping(PATH + "/company/block/{id}")
-    public ResponseEntity<String> block(@PathVariable Long id) {
-        service.block(id);
-        return new ResponseEntity<>("Company blocked", HttpStatus.OK);
+    public ResponseEntity<DataDto<String>> block(@PathVariable Long id) {
+
+        String message = service.block(id);
+        return new ResponseEntity<>(new DataDto<>(message), HttpStatus.OK);
     }
 
     @GetMapping(PATH + "/company/get/{id}")
-    public ResponseEntity<CompanyDto> get(@PathVariable Long id) {
-        CompanyDto dto = service.get(id);
-        return new ResponseEntity<>(dto, HttpStatus.OK);
+    public ResponseEntity<DataDto<Company>> get(@PathVariable Long id) {
+
+        Company company = service.get(id);
+        return new ResponseEntity<>(new DataDto<>(company), HttpStatus.OK);
     }
+
 }

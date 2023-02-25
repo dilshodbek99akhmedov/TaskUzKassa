@@ -11,7 +11,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.filter.OncePerRequestFilter;
 import uz.uzkassa.config.securty.JwtUtils;
-import uz.uzkassa.dto.Principal;
+import uz.uzkassa.dto.data.Principal;
 
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
@@ -39,13 +39,13 @@ public class CustomAuthorizationFilter extends OncePerRequestFilter {
                 DecodedJWT decodedJWT = JwtUtils.getVerifier().verify(token);
                 String username = decodedJWT.getSubject();
                 String[] roles = decodedJWT.getClaim("roles").asArray(String.class);
-                String id = decodedJWT.getClaim("id").toString();
+                Long id = decodedJWT.getClaim("id").asLong();
                 String status = decodedJWT.getClaim("status").toString();
 
                 Collection<SimpleGrantedAuthority> authorities = new ArrayList<>();
                 Arrays.stream(roles).forEach(role -> authorities.add(new SimpleGrantedAuthority(role)));
                 UsernamePasswordAuthenticationToken authenticationToken =
-                        new UsernamePasswordAuthenticationToken(new Principal(id,username,status), null, authorities);
+                        new UsernamePasswordAuthenticationToken(new Principal(id, username, roles, status), null, authorities);
                 SecurityContextHolder.getContext().setAuthentication(authenticationToken);
 
                 filterChain.doFilter(request, response);
@@ -58,6 +58,6 @@ public class CustomAuthorizationFilter extends OncePerRequestFilter {
                 response.setContentType(MediaType.APPLICATION_JSON_VALUE);
                 new ObjectMapper().writeValue(response.getOutputStream(), error);
             }
-        }
+        } else filterChain.doFilter(request, response);
     }
 }

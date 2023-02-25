@@ -1,4 +1,4 @@
-package uz.uzkassa.dto;
+package uz.uzkassa.dto.data;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.*;
@@ -22,7 +22,7 @@ public class DataDto<T> implements Serializable {
 
     protected boolean success;
 
-    private Long totalCount;
+    private Integer totalCount;
 
     public DataDto(boolean success) {
         this.success = success;
@@ -38,7 +38,7 @@ public class DataDto<T> implements Serializable {
         this.success = false;
     }
 
-    public DataDto(T data, Long totalCount) {
+    public DataDto(T data, Integer totalCount) {
         this.data = data;
         this.success = true;
         this.totalCount = totalCount;
