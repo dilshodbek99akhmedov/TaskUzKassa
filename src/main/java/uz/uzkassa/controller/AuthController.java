@@ -5,7 +5,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import uz.uzkassa.dto.auth.RegisterDto;
 import uz.uzkassa.dto.data.DataDto;
-import uz.uzkassa.services.AuthService;
+import uz.uzkassa.service.AuthService;
 
 /**
  * @author Dilshodbek Akhmedov, Thu 10:44 PM. 2/23/23

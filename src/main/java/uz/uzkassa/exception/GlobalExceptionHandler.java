@@ -1,4 +1,4 @@
-package uz.uzkassa.exceptions;
+package uz.uzkassa.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

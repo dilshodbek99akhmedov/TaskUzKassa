@@ -13,7 +13,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import uz.uzkassa.config.securty.filter.CustomAuthenticationFilter;
 import uz.uzkassa.config.securty.filter.CustomAuthorizationFilter;
-import uz.uzkassa.services.impl.AuthServiceImpl;
+import uz.uzkassa.service.impl.AuthServiceImpl;
 
 /**
  * @author Dilshodbek Akhmedov, Fri 9:55 AM. 2/24/23

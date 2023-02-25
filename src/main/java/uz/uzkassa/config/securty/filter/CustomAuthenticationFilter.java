@@ -94,14 +94,21 @@ public class CustomAuthenticationFilter extends UsernamePasswordAuthenticationFi
     protected void unsuccessfulAuthentication(HttpServletRequest request,
                                               HttpServletResponse response,
                                               AuthenticationException failed) throws ServletException, IOException {
-        DataDto<AppErrorDto> resp = new DataDto<>(
-                AppErrorDto.builder()
-                        .message(failed.getMessage())
-                        .path(request.getRequestURL().toString())
-                        .status(HttpStatus.INTERNAL_SERVER_ERROR)
-                        .build()
-        );
+        DataDto<AppErrorDto> resp = getCustomErrorMessage(request, failed);
         new ObjectMapper().writeValue(response.getOutputStream(), resp);
+    }
+
+    private DataDto<AppErrorDto> getCustomErrorMessage(HttpServletRequest request, AuthenticationException failed) {
+        if (failed.getMessage().equals(""))
+            return null;
+        else
+            return new DataDto<>(
+                    AppErrorDto.builder()
+                            .message(failed.getMessage())
+                            .path(request.getRequestURL().toString())
+                            .status(HttpStatus.FORBIDDEN)
+                            .build()
+            );
     }
 
 }

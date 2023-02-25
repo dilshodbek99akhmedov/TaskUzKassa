@@ -1,4 +1,4 @@
-package uz.uzkassa.repositories;
+package uz.uzkassa.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import uz.uzkassa.entity.Company;

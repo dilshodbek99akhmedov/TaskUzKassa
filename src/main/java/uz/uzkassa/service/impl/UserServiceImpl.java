@@ -1,4 +1,4 @@
-package uz.uzkassa.services.impl;
+package uz.uzkassa.service.impl;
 
 import lombok.AllArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -10,9 +10,9 @@ import uz.uzkassa.entity.Company;
 import uz.uzkassa.entity.User;
 import uz.uzkassa.enums.Role;
 import uz.uzkassa.enums.Status;
-import uz.uzkassa.repositories.CompanyRepository;
-import uz.uzkassa.repositories.UserRepository;
-import uz.uzkassa.services.UserService;
+import uz.uzkassa.repository.CompanyRepository;
+import uz.uzkassa.repository.UserRepository;
+import uz.uzkassa.service.UserService;
 import uz.uzkassa.utils.SessionUtils;
 
 import java.util.List;
@@ -62,10 +62,13 @@ public class UserServiceImpl implements UserService {
     private User updateUserParams(UpdateUserDto dto, User user) {
         if (Objects.nonNull(dto.getUsername()) && !dto.getUsername().isEmpty())
             user.setUsername(dto.getUsername());
+
         if (Objects.nonNull(dto.getEmail()) && !dto.getEmail().isEmpty())
-            user.setUsername(dto.getEmail());
+            user.setEmail(dto.getEmail());
+
         if (Objects.nonNull(dto.getPassword()) && !dto.getPassword().isEmpty())
-            user.setUsername(passwordEncoder.encode(dto.getPassword()));
+            user.setPassword(passwordEncoder.encode(dto.getPassword()));
+
         return user;
     }
 

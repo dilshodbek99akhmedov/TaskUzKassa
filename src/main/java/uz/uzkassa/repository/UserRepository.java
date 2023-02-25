@@ -1,4 +1,4 @@
-package uz.uzkassa.repositories;
+package uz.uzkassa.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;

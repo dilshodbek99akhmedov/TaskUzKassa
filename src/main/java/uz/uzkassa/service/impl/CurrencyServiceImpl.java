@@ -1,11 +1,11 @@
-package uz.uzkassa.services.impl;
+package uz.uzkassa.service.impl;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import uz.uzkassa.dto.currency.NbuCurrencyRateDto;
-import uz.uzkassa.services.CurrencyService;
+import uz.uzkassa.service.CurrencyService;
 
 import java.util.Arrays;
 import java.util.Objects;

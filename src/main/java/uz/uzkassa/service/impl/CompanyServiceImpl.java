@@ -1,4 +1,4 @@
-package uz.uzkassa.services.impl;
+package uz.uzkassa.service.impl;
 
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -6,10 +6,9 @@ import org.springframework.transaction.annotation.Transactional;
 import uz.uzkassa.dto.company.CreateCompanyDto;
 import uz.uzkassa.dto.company.UpdateCompanyDto;
 import uz.uzkassa.entity.Company;
-import uz.uzkassa.enums.Role;
 import uz.uzkassa.enums.Status;
-import uz.uzkassa.repositories.CompanyRepository;
-import uz.uzkassa.services.CompanyService;
+import uz.uzkassa.repository.CompanyRepository;
+import uz.uzkassa.service.CompanyService;
 import uz.uzkassa.utils.SessionUtils;
 
 import java.util.Objects;
@@ -50,10 +49,13 @@ public class CompanyServiceImpl implements CompanyService {
     private Company updateCompanyParams(UpdateCompanyDto dto, Company company) {
         if (Objects.nonNull(dto.getName()) && !dto.getName().isEmpty())
             company.setName(dto.getName());
+
         if (Objects.nonNull(dto.getAddress()) && !dto.getAddress().isEmpty())
-            company.setName(dto.getAddress());
+            company.setAddress(dto.getAddress());
+
         if (Objects.nonNull(dto.getZipCode()) && !dto.getZipCode().isEmpty())
-            company.setName(dto.getZipCode());
+            company.setZipCode(dto.getZipCode());
+
         return company;
     }
 

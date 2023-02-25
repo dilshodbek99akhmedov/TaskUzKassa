@@ -1,4 +1,4 @@
-package uz.uzkassa.services;
+package uz.uzkassa.service;
 
 import uz.uzkassa.dto.currency.NbuCurrencyRateDto;
 

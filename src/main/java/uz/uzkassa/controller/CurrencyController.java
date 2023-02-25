@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 import uz.uzkassa.dto.currency.NbuCurrencyRateDto;
 import uz.uzkassa.dto.data.DataDto;
-import uz.uzkassa.services.CurrencyService;
+import uz.uzkassa.service.CurrencyService;
 
 /**
  * @author Dilshodbek Akhmedov, Fri 12:10 AM. 2/24/23

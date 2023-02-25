@@ -2,6 +2,10 @@ server:
   port: 8183
 spring:
   datasource:
+    #    driver-class-name: org.postgresql.Driver
+    #    url: jdbc:postgresql://localhost:5432/uzkassa
+    #    username: postgres
+    #    password: dk@123
     url: jdbc:h2:file:./db
     username: u
     password: 1

@@ -8,7 +8,7 @@ import uz.uzkassa.dto.company.CreateCompanyDto;
 import uz.uzkassa.dto.company.UpdateCompanyDto;
 import uz.uzkassa.dto.data.DataDto;
 import uz.uzkassa.entity.Company;
-import uz.uzkassa.services.CompanyService;
+import uz.uzkassa.service.CompanyService;
 
 /**
  * @author Dilshodbek Akhmedov, Thu 10:34 PM. 2/23/23

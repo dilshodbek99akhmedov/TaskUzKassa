@@ -8,7 +8,7 @@ import uz.uzkassa.dto.data.DataDto;
 import uz.uzkassa.dto.user.CreateUserDto;
 import uz.uzkassa.dto.user.UpdateUserDto;
 import uz.uzkassa.entity.User;
-import uz.uzkassa.services.UserService;
+import uz.uzkassa.service.UserService;
 
 import java.util.List;
 

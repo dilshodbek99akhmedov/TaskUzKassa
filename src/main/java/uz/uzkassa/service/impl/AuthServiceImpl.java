@@ -1,4 +1,4 @@
-package uz.uzkassa.services.impl;
+package uz.uzkassa.service.impl;
 
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -13,9 +13,9 @@ import uz.uzkassa.entity.EmailSettings;
 import uz.uzkassa.entity.User;
 import uz.uzkassa.enums.Role;
 import uz.uzkassa.enums.Status;
-import uz.uzkassa.repositories.EmailSettingsRepository;
-import uz.uzkassa.repositories.UserRepository;
-import uz.uzkassa.services.AuthService;
+import uz.uzkassa.repository.EmailSettingsRepository;
+import uz.uzkassa.repository.UserRepository;
+import uz.uzkassa.service.AuthService;
 import uz.uzkassa.utils.EmailUtils;
 
 import java.util.UUID;
