@@ -14,12 +14,12 @@ public interface UserService {
      * @param dto
      * @return
      */
-    Long create(CreateUserDto dto);
+    User create(CreateUserDto dto);
 
     /**
      * @param dto
      */
-    String edit(UpdateUserDto dto);
+    User edit(UpdateUserDto dto);
 
     /**
      * @param id

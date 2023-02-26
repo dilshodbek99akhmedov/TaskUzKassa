@@ -26,7 +26,7 @@ public class CompanyServiceImpl implements CompanyService {
     private final CompanyRepository companyRepository;
 
     @Override
-    public Long create(CreateCompanyDto dto) {
+    public Company create(CreateCompanyDto dto) {
         return companyRepository.save(
                 Company.builder()
                         .name(dto.getName())
@@ -35,15 +35,14 @@ public class CompanyServiceImpl implements CompanyService {
                         .status(Status.ACTIVE)
                         .createdBy(SessionUtils.getSessionId())
                         .build()
-        ).getId();
+        );
     }
 
     @Transactional
     @Override
-    public String edit(UpdateCompanyDto dto) {
+    public Company edit(UpdateCompanyDto dto) {
         Company company = get(dto.getId());
-        companyRepository.save(updateCompanyParams(dto, company));
-        return "Company updated";
+        return companyRepository.save(updateCompanyParams(dto, company));
     }
 
     private Company updateCompanyParams(UpdateCompanyDto dto, Company company) {
@@ -64,8 +63,8 @@ public class CompanyServiceImpl implements CompanyService {
     public String block(Long id) {
         Company company = get(id);
         company.setStatus(Status.BLOCK);
-        companyRepository.save(company);
-        return "Company blocked";
+        Long blockCompanyID = companyRepository.save(company).getId();
+        return "Company blocked id = " + blockCompanyID;
     }
 
     @Override

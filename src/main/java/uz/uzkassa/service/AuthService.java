@@ -8,14 +8,15 @@ import uz.uzkassa.dto.auth.RegisterDto;
 public interface AuthService {
 
     /**
-     * @param dto
-     * @return
+     * @param dto Parameters required to save the user to the system
+     * @return If successfully saved in the user's system, a confirmation message will be sent to his email.
+     * This is a message about the need to check the user's email.
      */
     String register(RegisterDto dto);
 
     /**
-     * @param token
-     * @return
+     * @param token Activation token in the mail
+     * @return Message about activation of the user
      */
     String confirmation(String token);
 }

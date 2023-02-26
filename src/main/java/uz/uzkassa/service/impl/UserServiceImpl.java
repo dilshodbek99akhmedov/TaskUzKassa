@@ -31,7 +31,7 @@ public class UserServiceImpl implements UserService {
     private final CompanyRepository companyRepository;
 
     @Override
-    public Long create(CreateUserDto dto) {
+    public User create(CreateUserDto dto) {
         if (userRepository.findByUsernameOrEmail(dto.getUsername(), dto.getEmail()).isPresent())
             throw new RuntimeException("User already exists");
 
@@ -48,15 +48,14 @@ public class UserServiceImpl implements UserService {
                         .status(Status.CREATED)
                         .company(companyOptional.get())
                         .build()
-        ).getId();
+        );
     }
 
     @Transactional
     @Override
-    public String edit(UpdateUserDto dto) {
+    public User edit(UpdateUserDto dto) {
         User user = get(dto.getId());
-        userRepository.save(updateUserParams(dto, user));
-        return "User updated";
+        return userRepository.save(updateUserParams(dto, user));
     }
 
     private User updateUserParams(UpdateUserDto dto, User user) {
@@ -77,8 +76,8 @@ public class UserServiceImpl implements UserService {
     public String block(Long id) {
         User user = get(id);
         user.setStatus(Status.BLOCK);
-        userRepository.save(user);
-        return "User blocked";
+        Long blockUserID = userRepository.save(user).getId();
+        return "User blocked id = " + blockUserID;
     }
 
     @Override

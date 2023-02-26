@@ -23,18 +23,18 @@ public class UserController extends AbstractController<UserService> {
         super(service);
     }
 
-    @PostMapping(PATH + "/user/create")
-    public ResponseEntity<DataDto<String>> create(@RequestBody CreateUserDto dto) {
+    @PostMapping(PATH + "/user")
+    public ResponseEntity<DataDto<User>> create(@RequestBody CreateUserDto dto) {
 
-        Long userId = service.create(dto);
-        return new ResponseEntity<>(new DataDto<>("user_id = " + userId), HttpStatus.OK);
+        User user = service.create(dto);
+        return new ResponseEntity<>(new DataDto<>(user), HttpStatus.OK);
     }
 
-    @PostMapping(PATH + "/user/edit")
-    public ResponseEntity<DataDto<String>> edit(@RequestBody UpdateUserDto dto) {
+    @PutMapping(PATH + "/user")
+    public ResponseEntity<DataDto<User>> edit(@RequestBody UpdateUserDto dto) {
 
-        String message = service.edit(dto);
-        return new ResponseEntity<>(new DataDto<>(message), HttpStatus.OK);
+        User user = service.edit(dto);
+        return new ResponseEntity<>(new DataDto<>(user), HttpStatus.OK);
     }
 
     @GetMapping(PATH + "/user/block/{id}")
@@ -44,14 +44,14 @@ public class UserController extends AbstractController<UserService> {
         return new ResponseEntity<>(new DataDto<>(message), HttpStatus.OK);
     }
 
-    @GetMapping(PATH + "/user/get/{id}")
+    @GetMapping(PATH + "/user/{id}")
     public ResponseEntity<DataDto<User>> get(@PathVariable Long id) {
 
         User user = service.get(id);
         return new ResponseEntity<>(new DataDto<>(user), HttpStatus.OK);
     }
 
-    @GetMapping(PATH + "/user/get/company-employees/{companyId}")
+    @GetMapping(PATH + "/user/company-employees/{companyId}")
     public ResponseEntity<DataDto<List<User>>> getAll(@PathVariable Long companyId) {
 
         List<User> users = service.getAll(companyId);

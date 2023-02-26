@@ -23,18 +23,18 @@ public class CompanyController extends AbstractController<CompanyService> {
         super(service);
     }
 
-    @PostMapping(PATH + "/company/create")
-    public ResponseEntity<DataDto<String>> create(@Valid @RequestBody CreateCompanyDto dto) {
+    @PostMapping(PATH + "/company")
+    public ResponseEntity<DataDto<Company>> create(@Valid @RequestBody CreateCompanyDto dto) {
 
-        Long companyId = service.create(dto);
-        return new ResponseEntity<>(new DataDto<>("company_id = " + companyId), HttpStatus.OK);
+        Company company = service.create(dto);
+        return new ResponseEntity<>(new DataDto<>(company), HttpStatus.OK);
     }
 
-    @PostMapping(PATH + "/company/edit")
-    public ResponseEntity<DataDto<String>> edit(@Valid @RequestBody UpdateCompanyDto dto) {
+    @PutMapping(PATH + "/company")
+    public ResponseEntity<DataDto<Company>> edit(@Valid @RequestBody UpdateCompanyDto dto) {
 
-        String message = service.edit(dto);
-        return new ResponseEntity<>(new DataDto<>(message), HttpStatus.OK);
+        Company company = service.edit(dto);
+        return new ResponseEntity<>(new DataDto<>(company), HttpStatus.OK);
     }
 
     @GetMapping(PATH + "/company/block/{id}")
@@ -44,7 +44,7 @@ public class CompanyController extends AbstractController<CompanyService> {
         return new ResponseEntity<>(new DataDto<>(message), HttpStatus.OK);
     }
 
-    @GetMapping(PATH + "/company/get/{id}")
+    @GetMapping(PATH + "/company/{id}")
     public ResponseEntity<DataDto<Company>> get(@PathVariable Long id) {
 
         Company company = service.get(id);

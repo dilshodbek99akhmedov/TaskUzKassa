@@ -9,5 +9,4 @@ class TaskUzKassaApplicationTests {
 	@Test
 	void contextLoads() {
 	}
-
 }

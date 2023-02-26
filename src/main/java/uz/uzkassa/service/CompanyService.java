@@ -9,15 +9,16 @@ import uz.uzkassa.entity.Company;
  */
 public interface CompanyService {
     /**
-     * @param dto
-     * @return
+     * @param dto Parameters for creating a company
+     * @return Complete information about the created company
      */
-    Long create(CreateCompanyDto dto);
+    Company create(CreateCompanyDto dto);
 
     /**
      * @param dto
+     * @return
      */
-    String edit(UpdateCompanyDto dto);
+    Company edit(UpdateCompanyDto dto);
 
     /**
      * @param id

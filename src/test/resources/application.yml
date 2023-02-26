@@ -1,0 +1,26 @@
+server:
+  port: 8183
+spring:
+  datasource:
+    url: jdbc:h2:file:./db
+    username: u
+    password: 1
+    driver-class-name: org.h2.Driver
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: tester404tester@gmail.com
+    password: olxrsaxtbcgmcygd
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
