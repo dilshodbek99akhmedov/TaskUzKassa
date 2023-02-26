@@ -1,13 +1,20 @@
 package uz.uzkassa.helper;
 
-import uz.uzkassa.dto.user.CreateUserDto;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
+import uz.uzkassa.dto.company.CreateCompanyDto;
+import uz.uzkassa.dto.data.Principal;
 import uz.uzkassa.entity.Company;
+import uz.uzkassa.entity.EmailSettings;
 import uz.uzkassa.entity.User;
 import uz.uzkassa.enums.Role;
 import uz.uzkassa.enums.Status;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.List;
 
 /**
@@ -15,35 +22,68 @@ import java.util.List;
  */
 
 public class DataHelper {
-    public static List<Company> getCompaniesToIntialize() {
-        Company companyDtoOne = Company.builder()
-                .name("CompanyOne")
-                .address("Tashkent 1")
-                .zipCode("1111111")
-                .status(Status.ACTIVE)
-                .createdBy(1L)
-                .users(new ArrayList<>())
-                .build();
 
-        Company companyDtoTwo = Company.builder()
-                .name("CompanyTwo")
-                .address("Tashkent 2")
-                .zipCode("2222222")
-                .status(Status.BLOCK)
-                .createdBy(1L)
-                .users(new ArrayList<>())
-                .build();
+    public static List<Company> getCompaniesToIntialize() {
+        Company companyDtoOne = new Company(
+                "Company 1",
+                "Tashkent 1",
+                "1111111",
+                Status.ACTIVE,
+                1L,
+                new ArrayList<>());
+        companyDtoOne.setId(1L);
+
+        Company companyDtoTwo = new Company(
+                "Company 2",
+                "Tashkent 2",
+                "2222222",
+                Status.ACTIVE,
+                1L,
+                new ArrayList<>());
+        companyDtoTwo.setId(2L);
         return Arrays.asList(companyDtoOne, companyDtoTwo);
     }
 
-    public static User getUsersToIntialize() {
-        return User.builder()
-                .username("userOne")
-                .password("123123")
+    public static List<User> getUsersToIntialize() {
+        User user2 = User.builder()
+                .username("user 1")
+                .password("111")
+                .email("dilshooodbek@gmail.com")
+                .role(Role.EMPLOYEE)
+                .company(null)
+                .status(Status.CREATED)
+                .build();
+        user2.setId(2L);
+
+        User user1 = User.builder()
+                .username("admin")
+                .password("123")
                 .email("dilshodbeka404@gmail.com")
                 .role(Role.OWNER)
                 .company(null)
                 .status(Status.ACTIVE)
                 .build();
+        user1.setId(1L);
+        return Arrays.asList(user1, user2);
     }
+
+    public static EmailSettings getEmailSettingsToIntialize() {
+        return EmailSettings.builder()
+                .token("email-settings-token-89235892")
+                .email("dilshodbeka404@gmail.com")
+                .createdAt(LocalDateTime.now())
+                .build();
+    }
+
+    public static void setSecurityContextHolder() {
+        Collection<SimpleGrantedAuthority> authorities = new ArrayList<>();
+        authorities.add(new SimpleGrantedAuthority("ROLE_OWNER"));
+        UsernamePasswordAuthenticationToken authenticationToken =
+                new UsernamePasswordAuthenticationToken(
+                        new Principal(1L, "admin", new String[]{"ROLE_OWNER"}, Status.ACTIVE.name()),
+                        null,
+                        authorities);
+        SecurityContextHolder.getContext().setAuthentication(authenticationToken);
+    }
+
 }

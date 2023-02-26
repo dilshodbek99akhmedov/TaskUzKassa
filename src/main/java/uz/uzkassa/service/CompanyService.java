@@ -9,25 +9,26 @@ import uz.uzkassa.entity.Company;
  */
 public interface CompanyService {
     /**
-     * @param dto Parameters for creating a company
-     * @return Complete information about the created company
+     * @param dto Parameters for creating a Company
+     * @return Complete information about the created Company
      */
     Company create(CreateCompanyDto dto);
 
     /**
-     * @param dto
-     * @return
+     * @param dto Parameters for editing the Company
+     * @return The edited Company is returned
      */
     Company edit(UpdateCompanyDto dto);
 
     /**
-     * @param id
+     * @param id The id of the Company to be blocked
+     * @return A message that the Company has been blocked
      */
     String block(Long id);
 
     /**
-     * @param id
-     * @return
+     * @param id The id of the Company to get
+     * @return Company returned from DB
      */
     Company get(Long id);
 }

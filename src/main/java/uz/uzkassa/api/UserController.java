@@ -1,4 +1,4 @@
-package uz.uzkassa.controller;
+package uz.uzkassa.api;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

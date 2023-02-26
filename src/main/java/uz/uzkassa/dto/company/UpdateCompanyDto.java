@@ -17,7 +17,6 @@ import javax.validation.constraints.NotBlank;
 @NoArgsConstructor
 @AllArgsConstructor
 public class UpdateCompanyDto {
-    @NotBlank(message = "Company ID is blank")
     private Long id;
     private String name;
     private String address;

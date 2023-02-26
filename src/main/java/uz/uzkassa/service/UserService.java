@@ -11,29 +11,32 @@ import java.util.List;
  */
 public interface UserService {
     /**
-     * @param dto
-     * @return
+     * @param dto Parameters for creating a User
+     * @return Complete information about the created User
      */
     User create(CreateUserDto dto);
 
     /**
-     * @param dto
+     * @param dto Parameters for editing the User
+     * @return The edited User is returned
      */
     User edit(UpdateUserDto dto);
 
     /**
-     * @param id
+     * @param id The id of the User to be blocked
+     * @return A message that the User has been blocked
      */
     String block(Long id);
 
     /**
-     * @param id
-     * @return
+     * @param id The id of the User to get
+     * @return User returned from DB
      */
     User get(Long id);
 
     /**
-     * @return
+     * @param companyId company id si whose users are being taken
+     * @return Company users found in DB
      */
     List<User> getAll(Long companyId);
 }

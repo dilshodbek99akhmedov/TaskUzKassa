@@ -1,5 +1,6 @@
 package uz.uzkassa.utils;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -12,6 +13,7 @@ import java.util.concurrent.CompletableFuture;
  * @author Dilshodbek Akhmedov, Fri 7:13 AM. 2/24/23
  */
 
+@Slf4j
 @Component
 public class EmailUtils {
     @Value("${email.subject}")
@@ -36,6 +38,7 @@ public class EmailUtils {
             message.setSubject(subject);
             message.setText(text);
             emailSender.send(message);
+            log.info("Message send this email: " + email);
         });
     }
 }

@@ -7,8 +7,8 @@ import uz.uzkassa.dto.currency.NbuCurrencyRateDto;
  */
 public interface CurrencyService {
     /**
-     * @param code
-     * @return
+     * @param code Currency code
+     * @return Currency value from nbu API
      */
     NbuCurrencyRateDto getCurrencyRate(String code);
 }

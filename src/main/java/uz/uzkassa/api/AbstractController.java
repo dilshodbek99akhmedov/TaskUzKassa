@@ -1,4 +1,4 @@
-package uz.uzkassa.controller;
+package uz.uzkassa.api;
 
 /**
  * @author Dilshodbek Akhmedov, Thu 10:20 PM. 2/23/23
