@@ -112,33 +112,6 @@ class IntegrationTestCompanyAPI {
     }
 
     @Test
-    @DisplayName("SUCCESS: company blocked!")
-    void it_should_company_success_blocked() throws Exception {
-        long id = 2L;
-
-        mockMvc.perform(MockMvcRequestBuilders.get("/api/v1/company/block/" + id)
-                        .accept(MediaType.APPLICATION_JSON))
-                .andExpect(status().isOk())
-                .andExpect(content().contentType("application/json"))
-                .andExpect(jsonPath("$.success").value(true))
-                .andExpect(jsonPath("$.data").value("Company blocked id = " + id));
-    }
-
-    @Test
-    @DisplayName("FAILED: company not blocked!")
-    void it_should_company_not_blocked() throws Exception {
-        long id = 3L;
-
-        mockMvc.perform(MockMvcRequestBuilders.get("/api/v1/company/block/" + id)
-                        .accept(MediaType.APPLICATION_JSON))
-                .andExpect(status().isOk())
-                .andExpect(content().contentType("application/json"))
-                .andExpect(jsonPath("$.success").value(false))
-                .andExpect(jsonPath("$.error.status").value(400))
-                .andExpect(jsonPath("$.error.message").value("Company not found"));
-    }
-
-    @Test
     @DisplayName("SUCCESS: company update !")
     void it_should_success_company_update() throws Exception {
         UpdateCompanyDto updateCompanyDto = new UpdateCompanyDto(1L, "GoodCompany", "Samarkand", "951357");
@@ -164,6 +137,33 @@ class IntegrationTestCompanyAPI {
         mockMvc.perform(MockMvcRequestBuilders.put("/api/v1/company")
                         .content(mapper.writeValueAsString(updateCompanyDto))
                         .contentType(MediaType.APPLICATION_JSON)
+                        .accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(content().contentType("application/json"))
+                .andExpect(jsonPath("$.success").value(false))
+                .andExpect(jsonPath("$.error.status").value(400))
+                .andExpect(jsonPath("$.error.message").value("Company not found"));
+    }
+
+    @Test
+    @DisplayName("SUCCESS: company blocked!")
+    void it_should_company_success_blocked() throws Exception {
+        long id = 2L;
+
+        mockMvc.perform(MockMvcRequestBuilders.get("/api/v1/company/block/" + id)
+                        .accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(content().contentType("application/json"))
+                .andExpect(jsonPath("$.success").value(true))
+                .andExpect(jsonPath("$.data").value("Company blocked id = " + id));
+    }
+
+    @Test
+    @DisplayName("FAILED: company not blocked!")
+    void it_should_company_not_blocked() throws Exception {
+        long id = 3L;
+
+        mockMvc.perform(MockMvcRequestBuilders.get("/api/v1/company/block/" + id)
                         .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType("application/json"))

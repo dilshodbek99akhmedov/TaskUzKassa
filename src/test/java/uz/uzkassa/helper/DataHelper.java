@@ -3,7 +3,6 @@ package uz.uzkassa.helper;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
-import uz.uzkassa.dto.company.CreateCompanyDto;
 import uz.uzkassa.dto.data.Principal;
 import uz.uzkassa.entity.Company;
 import uz.uzkassa.entity.EmailSettings;
@@ -65,6 +64,18 @@ public class DataHelper {
                 .build();
         user1.setId(1L);
         return Arrays.asList(user1, user2);
+    }
+
+    public static User getTestUser() {
+        return new User(
+                "u",
+                "1",
+                "test@gmail.com",
+                Role.EMPLOYEE,
+                Status.ACTIVE,
+                LocalDateTime.now(),
+                null,
+                null);
     }
 
     public static EmailSettings getEmailSettingsToIntialize() {

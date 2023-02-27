@@ -3,10 +3,7 @@ package uz.uzkassa.api;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -16,10 +13,15 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 import uz.uzkassa.dto.user.CreateUserDto;
+import uz.uzkassa.dto.user.UpdateUserDto;
+import uz.uzkassa.entity.Company;
+import uz.uzkassa.entity.User;
 import uz.uzkassa.helper.DataHelper;
 import uz.uzkassa.helper.IntegrationTest;
 import uz.uzkassa.repository.CompanyRepository;
 import uz.uzkassa.repository.UserRepository;
+
+import java.util.Optional;
 
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
@@ -59,6 +61,13 @@ class IntegrationTestUserAPI {
         DataHelper.getUsersToIntialize().forEach(user -> user.setPassword(passwordEncoder.encode(user.getPassword())));
         companyRepository.saveAll(DataHelper.getCompaniesToIntialize());
         userRepository.saveAll(DataHelper.getUsersToIntialize());
+
+        Optional<Company> companyOptional = companyRepository.findById(1L);
+        User user = DataHelper.getTestUser();
+        user.setCompany(companyOptional.get());
+        user.setId(3L);
+
+        userRepository.save(user);
     }
 
     @AfterEach
@@ -109,31 +118,18 @@ class IntegrationTestUserAPI {
                 .andExpect(jsonPath("$.error.message").value("Company not found"));
     }
 
-//    @Test
-//    @DisplayName("SUCCESS: user blocked!")
-//    void it_should_user_success_blocked() throws Exception {
-//        long id = 3L;
-//
-//        mockMvc.perform(MockMvcRequestBuilders.get("/api/v1/user/block/" + id)
-//                        .accept(MediaType.APPLICATION_JSON))
-//                .andExpect(status().isOk())
-//                .andExpect(content().contentType("application/json"))
-//                .andExpect(jsonPath("$.success").value(true))
-//                .andExpect(jsonPath("$.data").value("User blocked id = " + id));
-//    }
-
     @Test
-    @DisplayName("FAILED: user not blocked!")
-    void it_should_user_not_blocked() throws Exception {
-        long id = 10L;
+    @DisplayName("SUCCESS: user found!")
+    void it_should_user_found() throws Exception {
+        long id = 3L;
 
-        mockMvc.perform(MockMvcRequestBuilders.get("/api/v1/user/block/" + id)
+        mockMvc.perform(MockMvcRequestBuilders.get("/api/v1/user/" + id)
                         .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType("application/json"))
-                .andExpect(jsonPath("$.success").value(false))
-                .andExpect(jsonPath("$.error.status").value(400))
-                .andExpect(jsonPath("$.error.message").value("User not found"));
+                .andExpect(jsonPath("$.success").value(true))
+                .andExpect(jsonPath("$.data.username").value("u"))
+                .andExpect(jsonPath("$.data.email").value("test@gmail.com"));
     }
 
     @Test
@@ -160,6 +156,50 @@ class IntegrationTestUserAPI {
                 .andExpect(status().isOk())
                 .andExpect(content().contentType("application/json"))
                 .andExpect(jsonPath("$.success").value(true));
+    }
+
+
+    @Test
+    @DisplayName("SUCCESS: user updated!")
+    void it_should_user_success_updated() throws Exception {
+        UpdateUserDto updateUserDto = new UpdateUserDto(3L, "us", "123", "usTest@gmail.com");
+
+        mockMvc.perform(MockMvcRequestBuilders.put("/api/v1/user")
+                        .content(mapper.writeValueAsString(updateUserDto))
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.success").value(true))
+                .andExpect(jsonPath("$.data.username").value("us"))
+                .andExpect(jsonPath("$.data.email").value("usTest@gmail.com"));
+
+    }
+
+    @Test
+    @DisplayName("SUCCESS: user blocked!")
+    void it_should_user_success_blocked() throws Exception {
+        long id = 3L;
+
+        mockMvc.perform(MockMvcRequestBuilders.get("/api/v1/user/block/" + id)
+                        .accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(content().contentType("application/json"))
+                .andExpect(jsonPath("$.success").value(true))
+                .andExpect(jsonPath("$.data").value("User blocked id = " + id));
+    }
+
+    @Test
+    @DisplayName("FAILED: user not blocked!")
+    void it_should_user_not_blocked() throws Exception {
+        long id = 10L;
+
+        mockMvc.perform(MockMvcRequestBuilders.get("/api/v1/user/block/" + id)
+                        .accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(content().contentType("application/json"))
+                .andExpect(jsonPath("$.success").value(false))
+                .andExpect(jsonPath("$.error.status").value(400))
+                .andExpect(jsonPath("$.error.message").value("User not found"));
     }
 
 }
